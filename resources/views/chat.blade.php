@@ -11,10 +11,14 @@
         <div v-for="m in messages">
 
             <!-- 登録された日時 -->
-            <span v-text="m.created_at"></span>：&nbsp;
+            <span v-text="m.user"></span>：&nbsp;
 
             <!-- メッセージ内容 -->
-            <span v-text="m.body"></span>
+            <span v-text="m.body"></span>&nbsp;&nbsp;&nbsp;
+
+            <!-- 登録された日時 -->
+            <span v-text="m.created_at"></span>
+
 
         </div>
 
