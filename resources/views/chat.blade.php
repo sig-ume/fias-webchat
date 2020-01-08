@@ -6,6 +6,14 @@
         <br>
         <button type="button" @click="send()">送信</button>
 
+        <br>
+        <textarea v-model="username"></textarea>
+
+        <textarea v-model="roomid"></textarea>
+        <br>
+        <button type="button" @click="cookie()">クッキー保存</button>
+        <hr>
+
         <hr>
 
         <div v-for="m in messages">
@@ -23,14 +31,19 @@
         </div>
 
     </div>
+
     <script src="/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
     <script>
 
         new Vue({
             el: '#chat',
             data: {
                 message: '',
-                messages: []
+                messages: [],
+                username: 'testname',
+                roomid  : 'testroom'
             },
             methods: {
                 getMessages() {
@@ -56,7 +69,15 @@
 
                     });
 
-                }
+                },
+                cookie() {
+                    Cookies.set('name', this.username);
+                    Cookies.set('room', this.roomid);
+
+                    this.username = '';
+		            this.roomid   = '';
+		        }
+
             },
 	    mounted() {
 
