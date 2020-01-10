@@ -1,17 +1,20 @@
 <html>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 <body>
+    ※クッキーを保存しないとコメント送信できません。
     <div id="chat">
-        <textarea v-model="message"></textarea>
-        <br>
-        <button type="button" @click="send()">送信</button>
 
-        <br>
         <textarea v-model="username"></textarea>
 
         <textarea v-model="roomid"></textarea>
         <br>
         <button type="button" @click="cookie()">クッキー保存</button>
+        <br>
+        <textarea v-model="message"></textarea>
+        <br>
+        <button type="button" @click="send()">送信</button>
+
+        <br>
         <hr>
 
         <hr>
@@ -36,7 +39,8 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
     <script>
-
+        //TODO:画面にはいった時点でクッキーにユーザー名とルームId付与
+        //TODO:クッキーを消した場合はトップ画面に移動？
         new Vue({
             el: '#chat',
             data: {
@@ -60,7 +64,10 @@
                 send() {
 
                     const url = '/ajax/chat';
-                    const params = { message: this.message };
+                    const params = { message: this.message,
+                                     username: Cookies.get('name'),
+                                     roomid: Cookies.get('room')
+                                    };
                     axios.post(url, params)
                         .then((response) => {
 

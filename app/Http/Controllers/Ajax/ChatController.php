@@ -8,16 +8,20 @@ use App\Http\Controllers\Controller;
 
 class ChatController extends Controller
 {
-    public function index() { // V’…‡‚ÉƒƒbƒZ[ƒWˆê——‚ğæ“¾
+    public function index() { // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Éƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ê——ï¿½ï¿½ï¿½æ“¾
 
         return \App\Message::orderBy('id', 'desc')->get();
 
     }
 
-    public function create(Request $request) { // ƒƒbƒZ[ƒW‚ğ“o˜^
+    public function create(Request $request) { // ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½oï¿½^
 
+        $user    = ($request->username == 'undefined') ? 'åç„¡ã—'   : $request->username;
+        $room    = ($request->roomid   == 'undefined') ? '00000000' : $request->roomid;
         $message = \App\Message::create([
-            'body' => $request->message
+            'body'    => $request->message,
+            'user'    => $user,
+            'room_id' => $room
         ]);
         event(new MessageCreated($message));
 
