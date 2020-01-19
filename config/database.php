@@ -68,6 +68,9 @@ return [
             'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
+            //MySQLのTZはUTC、LaravelのTZはJSTのため、+09:00の補正を入れる
+            //ReadはJST、WriteはUTC
+            'timezone' => '+09:00',
         ],
 
         'sqlsrv' => [

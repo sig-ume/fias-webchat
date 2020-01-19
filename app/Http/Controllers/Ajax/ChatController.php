@@ -10,7 +10,9 @@ class ChatController extends Controller
 {
     public function index() { // �V�����Ƀ��b�Z�[�W�ꗗ���擾
 
-        return \App\Message::orderBy('id', 'desc')->get();
+        //TODO;画面表示テスト
+        $message = \App\Message::orderBy('id', 'desc')->get();
+        return $message;
 
     }
 
@@ -25,5 +27,29 @@ class ChatController extends Controller
         ]);
         event(new MessageCreated($message));
 
+    }
+
+    private function getLocale() {
+
+        $languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        $languages = array_reverse($languages);
+ 
+        $result = '';
+ 
+        foreach ($languages as $language) {
+            if (preg_match('/^en/i', $language)) {
+                $result = 'English';
+                //header("Location: /english");
+            } elseif (preg_match('/^ja/i', $language)) {
+                $result = 'Japanese';
+                //header("Location: /");
+            } 
+        }
+        if ($result == '') {
+            $result = 'Japanese';
+            //header("Location: /");
+        }
+
+        return $result;
     }
 }
