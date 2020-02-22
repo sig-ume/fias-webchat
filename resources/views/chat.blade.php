@@ -15,18 +15,19 @@
         <button type="button" @click="send()">送信</button>
 
         <br>
+        
         <hr>
 
         <hr>
 
         <div v-for="m in messages">
 
-            <!-- 登録された日時 -->
+            <!-- ユーザーネーム -->
             <span v-text="m.user"></span>：&nbsp;
-
+            <br>
             <!-- メッセージ内容 -->
-            <span v-text="m.body"></span>&nbsp;&nbsp;&nbsp;
-
+            <strong><span style="white-space:pre-wrap; word-wrap:break-word;" v-text="m.body"></span></strong>
+            <br>
             <!-- 登録された日時 -->
             <span v-text="m.created_at"></span>
 
