@@ -10,7 +10,7 @@
         <br>
         <button type="button" @click="cookie()">クッキー保存</button>
         <br>
-        <textarea v-model="message"></textarea>
+        <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
         <br>
         <button type="button" @click="send()">送信</button>
 
@@ -77,6 +77,15 @@
 
                     });
 
+                },
+                sendByEnter: function(e) {
+                    if(e.shiftKey) {
+                        return;
+                    }
+ 
+        // これで「Enter を叩くと改行が入る」というデフォルトの挙動をキャンセルする
+        e.preventDefault();
+        this.send();
                 },
                 cookie() {
                     Cookies.set('name', this.username);
