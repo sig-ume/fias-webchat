@@ -11,7 +11,7 @@ class ChatController extends Controller
     public function index() { // �V�����Ƀ��b�Z�[�W�ꗗ���擾
 
         //TODO;画面表示テスト
-        $message = \App\Message::orderBy('id', 'desc')->get();
+        $message = \App\Message::orderBy('id', 'asc')->get();
         return $message;
 
     }

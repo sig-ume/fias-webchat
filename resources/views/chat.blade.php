@@ -1,26 +1,11 @@
 <html>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- cssの呼び出し -->
+    <link href="css/chat.blade.css" rel="stylesheet" type="text/css">
 <body>
-    ※クッキーを保存しないとコメント送信できません。
     <div id="chat">
-
-        <textarea v-model="username"></textarea>
-
-        <textarea v-model="roomid"></textarea>
-        <br>
-        <button type="button" @click="cookie()">クッキー保存</button>
-        <br>
-        <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
-        <br>
-        <button type="button" @click="send()">送信</button>
-
-        <br>
-        
-        <hr>
-
-        <hr>
-
-        <div v-for="m in messages">
+    
+        <div id="messages" v-for="m in messages">
 
             <!-- ユーザーネーム -->
             <span v-text="m.user"></span>：&nbsp;
@@ -34,8 +19,24 @@
 
         </div>
 
-    </div>
+        ※クッキーを保存しないとコメント送信できません。
+        
+        <div id="footer-fixed">
+                     <div id="footer-bk">
+                            
+        <textarea v-model="username"></textarea>
 
+        <textarea v-model="roomid"></textarea>
+        <br>
+        <button type="button" @click="cookie()">クッキー保存</button>
+        <br>
+        <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
+        <br>
+        <button type="button" @click="send()">送信</button>
+        </div>
+                     </div>
+    </div>
+    
     <script src="/js/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
