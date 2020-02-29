@@ -27,10 +27,7 @@ body
     	width:100%;                /* 横の幅を100% */
     }
 
-    div#messages
-    {
-        padding-bottom:180px;
-    }
+
 /*      
     div#footer { 
     	border: 5px solid #fff;    /* 表示領域を白枠で囲う */
