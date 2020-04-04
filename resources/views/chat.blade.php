@@ -22,19 +22,19 @@
         ※クッキーを保存しないとコメント送信できません。
         
         <div id="footer-fixed">
-                     <div id="footer-bk">
+            <div id="footer-bk">
                             
-        <textarea v-model="username"></textarea>
+                <textarea v-model="username"></textarea>
 
-        <textarea v-model="roomid"></textarea>
-        <br>
-        <button type="button" @click="cookie()">クッキー保存</button>
-        <br>
-        <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
-        <br>
-        <button type="button" @click="send()">送信</button>
+                <textarea v-model="roomid"></textarea>
+                <br>
+                <button type="button" @click="cookie()">クッキー保存</button>
+                <br>
+                <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
+                <br>
+                <button type="button" @click="send()">送信</button>
+            </div>
         </div>
-                     </div>
     </div>
     
     <script src="/js/app.js"></script>
@@ -84,9 +84,9 @@
                         return;
                     }
  
-        // これで「Enter を叩くと改行が入る」というデフォルトの挙動をキャンセルする
-        e.preventDefault();
-        this.send();
+                    // これで「Enter を叩くと改行が入る」というデフォルトの挙動をキャンセルする
+                    e.preventDefault();
+                    this.send();
                 },
                 cookie() {
                     Cookies.set('name', this.username);

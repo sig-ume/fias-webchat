@@ -11,21 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('chat', 'ChatController@index');
-Route::get('ajax/chat', 'Ajax\ChatController@index'); // ƒƒbƒZ[ƒWˆê——‚ðŽæ“¾
-Route::post('ajax/chat', 'Ajax\ChatController@create'); // ƒ`ƒƒƒbƒg“o˜^
+Route::get('ajax/chat', 'Ajax\ChatController@index'); // ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ê——ï¿½ï¿½ï¿½æ“¾
+Route::post('ajax/chat', 'Ajax\ChatController@create'); // ï¿½`ï¿½ï¿½ï¿½bï¿½gï¿½oï¿½^
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/{any}', function () {
+    return view('lobby');
+})->where('any', '.*');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
+// Route::get('chat', 'ChatController@index');
+// Route::get('ajax/chat', 'Ajax\ChatController@index'); // ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ê——ï¿½ï¿½ï¿½æ“¾
+// Route::post('ajax/chat', 'Ajax\ChatController@create'); // ï¿½`ï¿½ï¿½ï¿½bï¿½gï¿½oï¿½^
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('lobby', 'LobbyController@index');
