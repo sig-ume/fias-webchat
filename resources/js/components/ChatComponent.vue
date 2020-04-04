@@ -5,6 +5,7 @@
                 <textarea v-model="message" @keydown.enter="sendByEnter"></textarea>
                 <br>
                 <button type="button" @click="send()">送信</button>
+                            <hr>            <hr>
             </div>
         </div>
     

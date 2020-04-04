@@ -10,7 +10,7 @@
 
                 <textarea v-model="roomid"></textarea>
                 <br>
-                <button type="button" @click="cookie()">クッキー保存</button>
+                <button type="button" @click="cookie()">チャット入室</button>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
         name: "lobby",
         data() {
             return {
-                username: 'testname',
+                username: '名無し太郎',
                 roomid  : 'testroom'
             }
         },
