@@ -1742,6 +1742,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 //TODO:画面にはいった時点でクッキーにユーザー名とルームId付与
 //TODO:クッキーを消した場合はトップ画面に移動？
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1837,7 +1838,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "lobby",
   data: function data() {
     return {
-      username: 'testname',
+      username: '名無し太郎',
       roomid: 'testroom'
     };
   },
@@ -47207,7 +47208,11 @@ var render = function() {
               }
             },
             [_vm._v("送信")]
-          )
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("hr")
         ])
       ]),
       _vm._v(" "),
@@ -47318,7 +47323,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("クッキー保存")]
+          [_vm._v("チャット入室")]
         )
       ])
     ])
@@ -62544,10 +62549,107 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: routes
 }); //const app = new Vue(Vue.util.extend({ router })).$mount('#app');
+//const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app');
 
-var app = new Vue(Vue.util.extend({
-  router: router
-}, _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"])).$mount('#app');
+var Balloon = {
+  template: "<div class=\"conversation-balloon\" :class=\"speaker\">\n                <div class=\"avatar\">\n                    <img src=\"https://avatars3.githubusercontent.com/u/15647466?v=3&s=88\">\n                    <p class=\"name\">{{ name }}</p>\n                </div>\n                <p class=\"message\">{{ message }}</p>\n                </div>",
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    speaker: {
+      type: String,
+      required: true,
+      validator: function validator(value) {
+        return ['my', 'other'].includes(value);
+      }
+    },
+    message: {
+      type: String,
+      required: true
+    }
+  }
+};
+var ChatForm = {
+  template: "<div class=\"chat-form\">\n    <div class=\"form-container\">\n        <input type=\"text\" class=\"message\" v-model=\"message\">\n        <button class=\"submit\" @click=\"submit\">\u9001\u4FE1</button>\n    </div>\n    </div>",
+  props: {
+    applyEvent: {
+      type: String,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      message: ''
+    };
+  },
+  methods: {
+    submit: function submit() {
+      this.$emit(this.applyEvent, this.message);
+      this.message = '';
+    }
+  }
+};
+var app = new Vue({
+  el: '#app',
+  components: {
+    balloon: Balloon,
+    chatForm: ChatForm
+  },
+  data: function data() {
+    return {
+      chatLogs: [{
+        name: 'わたしだよ',
+        speaker: 'my',
+        message: 'hello'.repeat(10)
+      }, {
+        name: 'bot',
+        speaker: 'other',
+        message: 'hello world'
+      }]
+    };
+  },
+  methods: {
+    submit: function submit(value) {
+      this.chatLogs.push({
+        name: 'わたしだよ',
+        speaker: 'my',
+        message: value
+      });
+      this.botSubmit();
+      this.scrollDown();
+    },
+    botSubmit: function botSubmit() {
+      var _this = this;
+
+      setTimeout(function () {
+        _this.chatLogs.push({
+          name: 'bot',
+          speaker: 'other',
+          message: 'hello world'
+        });
+
+        _this.scrollDown();
+      }, 1000);
+    },
+    scrollDown: function scrollDown() {
+      var _this2 = this;
+
+      var target = this.$el.querySelector('.chat-timeline');
+      setTimeout(function () {
+        var height = target.scrollHeight - target.offsetHeight;
+        target.scrollTop += 10;
+
+        if (height <= target.scrollTop) {
+          return;
+        } else {
+          _this2.scrollDown();
+        }
+      }, 0);
+    }
+  }
+});
 
 /***/ }),
 

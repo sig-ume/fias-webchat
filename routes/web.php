@@ -12,8 +12,12 @@
 */
 
 Route::get('chat', 'ChatController@index');
-Route::get('ajax/chat', 'Ajax\ChatController@index'); // ���b�Z�[�W�ꗗ���擾
-Route::post('ajax/chat', 'Ajax\ChatController@create'); // �`���b�g�o�^
+Route::get('ajax/chat', 'Ajax\ChatController@index'); // チャットのTL取得
+Route::post('ajax/chat', 'Ajax\ChatController@create'); // チャットの投稿
+
+//LineライクUIおためし
+Route::get('line', 'LineController@index');
+
 Auth::routes();
 
 
