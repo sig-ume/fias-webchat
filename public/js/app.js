@@ -62548,7 +62548,7 @@ var routes = [{
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: routes
-}); //const app = new Vue(Vue.util.extend({ router })).$mount('#app');
+}); //const app = new Vue(Vue.util.extend({ router })).$mount('#app'); //
 //const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app');
 
 var Balloon = {

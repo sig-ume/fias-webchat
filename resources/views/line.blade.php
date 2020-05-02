@@ -2,7 +2,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- cssの呼び出し -->
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 <body>
     <div id="app">
         <main class="main-container">
